@@ -54,12 +54,18 @@ string GetGuess()
 bool AskToPlayAgain()
 {
   string Play = "";
-  cout << "Do you want to play again? true/false";
+  cout << "Do you want to play again? true/false: ";
   cin >> Play;
-  if (Play == "true") {
+  if (Play == "true")
+  {
     return true;
-  }else if (Play == "false"){
+  }
+  else if (Play == "false")
+  {
     return false;
   }
-  
+  else
+  {
+    return false;
+  }
 }
