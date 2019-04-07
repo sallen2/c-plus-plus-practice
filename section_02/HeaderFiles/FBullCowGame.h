@@ -4,7 +4,7 @@
 using FString = std::string;
 using int32 = int;
 
-enum class EWordStatus{
+enum class EGuessStatus{
   OK,
   Not_Isogram,
   Wrong_Length,
@@ -27,7 +27,7 @@ public:
   int32 GetCurrentTry() const;
   int32 GetHiddenWordLength() const;
 
-  EWordStatus CheckGuessValidity(FString) const;
+  EGuessStatus CheckGuessValidity(FString) const;
   bool IsGameWon() const;
 
   FBullCowCount SubmitGuess(FString);

@@ -28,20 +28,20 @@ bool FBullCowGame::IsGameWon() const
     return false;
 }
 
-EWordStatus FBullCowGame::CheckGuessValidity(FString) const
+EGuessStatus FBullCowGame::CheckGuessValidity(FString) const
 {
     if(false){
         
-        return EWordStatus::Not_Isogram;
+        return EGuessStatus::Not_Isogram;
     }else if(false){
 
-        return EWordStatus::Wrong_Length;
+        return EGuessStatus::Wrong_Length;
     } else if(false){
 
-        return EWordStatus::Not_Lowercase;
+        return EGuessStatus::Not_Lowercase;
     }else{
 
-        return EWordStatus::OK;
+        return EGuessStatus::OK;
     }
 }
 

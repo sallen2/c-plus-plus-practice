@@ -42,6 +42,9 @@ void PlayGame()
   for (int32 i = 0; i < MaxTries; i++)
   {
     FText Guess = GetGuess(); //TODO: check for valid guess
+
+    EWordGuessStatus Status = BullCowGame.CheckGuessValidity(Guess);
+
     FBullCowCount BullCowCount = BullCowGame.SubmitGuess(Guess);
 
     std::cout << "Bulls: " << BullCowCount.Bulls << std::endl;
