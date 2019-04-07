@@ -1,15 +1,19 @@
 #include <iostream>
 #include <string>
+#include "HeaderFiles/FBullCowGame.h"
 
-using namespace std;
+using FText = std::string;
+using int32 = int;
 
 void PrintIntro();
 void PlayGame();
-string GetGuess();
+FText GetGuess();
 bool AskToPlayAgain();
+FBullCowGame BullCowGame;
 
 int main()
 {
+ 
   bool playAgain = "";
   do
   {
@@ -23,49 +27,48 @@ int main()
 
 void PrintIntro()
 {
-  constexpr int WORD_LENGTH = 10;
-  cout << "Welcome to Bulls and Cows, a fun word game!\n";
-  cout << "Can you guess the " << WORD_LENGTH << " letter isogram I'm thinking of?\n";
-  cout << endl;
+  std::cout << "Welcome to Bulls and Cows, a fun word game!\n";
+  std::cout << "Can you guess the " << BullCowGame.GetHiddenWordLength() << " letter isogram I'm thinking of?\n";
+  std::cout << std::endl;
 
   return;
 }
 
 void PlayGame()
 {
-  constexpr int NUM_OF_TURNS = 5;
-  for (int i = 0; i < NUM_OF_TURNS; i++)
+  BullCowGame.Reset();
+  int32 MaxTries = BullCowGame.GetMaxTries();
+  // change for to while when checking guess
+  for (int32 i = 0; i < MaxTries; i++)
   {
-    string Guess = GetGuess();
-    cout << "Your guess was " << Guess << endl;
-    cout << endl;
+    FText Guess = GetGuess(); //TODO: check for valid guess
+    FBullCowCount BullCowCount = BullCowGame.SubmitGuess(Guess);
+
+    std::cout << "Bulls: " << BullCowCount.Bulls << std::endl;
+    std::cout << "Cows: " << BullCowCount.Cows << std::endl;
+    std::cout << "Your guess was " << Guess << std::endl;
+    std::cout << std::endl;
   }
+
+  // TODO: summarize game
+  return;
 }
 
-string GetGuess()
+FText GetGuess()
 {
-  string Guess = "";
-  cout << "Enter your guess: ";
-  getline(cin, Guess);
-
+  int32 CurrentTry = BullCowGame.GetCurrentTry(); 
+  std::cout << "Try " << CurrentTry << '.';
+  FText Guess = "";
+  std::cout << " Enter your guess: ";
+  std::getline(std::cin, Guess);
+  
   return Guess;
 }
 
 bool AskToPlayAgain()
 {
-  string Play = "";
-  cout << "Do you want to play again? true/false: ";
-  cin >> Play;
-  if (Play == "true")
-  {
-    return true;
-  }
-  else if (Play == "false")
-  {
-    return false;
-  }
-  else
-  {
-    return false;
-  }
+  FText Play = "";
+  std::cout << "Do you want to play again? yes/no: ";
+  std::getline(std::cin, Play);
+  return (Play[0] == 'y' || Play[0] == 'Y');
 }
