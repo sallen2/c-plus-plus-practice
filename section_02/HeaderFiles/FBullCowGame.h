@@ -5,6 +5,7 @@ using FString = std::string;
 using int32 = int;
 
 enum class EGuessStatus{
+  InvalidStatus,
   OK,
   Not_Isogram,
   Wrong_Length,
@@ -30,10 +31,11 @@ public:
   EGuessStatus CheckGuessValidity(FString) const;
   bool IsGameWon() const;
 
-  FBullCowCount SubmitGuess(FString);
+  FBullCowCount SubmitValidGuess(FString);
 
 private:
   int32 MyCurrentTry;
   int32 MyMaxTries;
   FString MyHiddenWord;
+  bool bGameIsWon;
 };
